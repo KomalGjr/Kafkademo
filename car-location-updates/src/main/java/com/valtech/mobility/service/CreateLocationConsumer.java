@@ -14,7 +14,7 @@ public class CreateLocationConsumer {
     private static final Logger log = LoggerFactory.getLogger(CreateLocationConsumer.class);
 
     @KafkaListener(topics = "${kafka.location.topic}", containerFactory="NotificationContainerFactory")
-    public void createOrderListener(@Payload LocationDetail locationDetail, Acknowledgment ack) {
+    public void createLocationListener(@Payload LocationDetail locationDetail, Acknowledgment ack) {
         log.info("Notification service received location {} ", locationDetail.toString());
         ack.acknowledge();
     }

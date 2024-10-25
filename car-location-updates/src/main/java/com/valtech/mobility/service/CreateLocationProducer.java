@@ -25,10 +25,9 @@ public class CreateLocationProducer {
         this.createLocationTopic = createLocationTopic;
     }
 
-    public boolean sendCreateLocationEvent(LocationDetail locationDetail) throws ExecutionException, InterruptedException {
+    public void sendCreateLocationEvent(LocationDetail locationDetail) throws ExecutionException, InterruptedException {
         SendResult<String, LocationDetail> sendResult = createLocationKafkaTemplate.send(createLocationTopic, locationDetail).get();
         log.info("Create Location {} event sent via Kafka", locationDetail);
         log.info(sendResult.toString());
-        return true;
     }
 }

@@ -24,7 +24,7 @@ public class LocationController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@RequestBody LocationDetail locationDetail) throws ExecutionException, InterruptedException {
+    public ResponseEntity<?> createLocation(@RequestBody LocationDetail locationDetail) throws ExecutionException, InterruptedException {
         createLocationProducer.sendCreateLocationEvent(locationDetail);
         return new ResponseEntity<>(HttpStatus.OK);
     }

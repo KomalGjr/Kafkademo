@@ -1,6 +1,6 @@
 package com.valtech.mobility.config;
 
-import com.valtech.mobility.model.LocationDetail;
+import com.valtech.mobility.model.FuelConsumptionDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,13 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class CreateLocationProducerConfig {
+public class FuelConsumptionProducerConfig {
 
-    @Value("${kafka.location.bootstrap-servers}")
+    @Value("${kafka.fuel.bootstrap-servers}")
     private String bootstrapServers;
 
     @Bean
-    public ProducerFactory<String, LocationDetail> createLocationProducerFactory(){
+    public ProducerFactory<String, FuelConsumptionDetails> fuelConsumptionProducerFactory(){
         Map<String,Object> config = new HashMap<>();
         config.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         config.put(org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
@@ -28,7 +28,7 @@ public class CreateLocationProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, LocationDetail> createLocationKafkaTemplate(){
-        return new KafkaTemplate<>(createLocationProducerFactory());
+    public KafkaTemplate<String, FuelConsumptionDetails> fuelConsumptionKafkaTemplate(){
+        return new KafkaTemplate<>(fuelConsumptionProducerFactory());
     }
 }
